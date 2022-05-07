@@ -1,4 +1,4 @@
-import ApiClient, { BookStoreAttributes, JsonApiResponse } from "../api/Client";
+import ApiClient, { BookStoreAttributes, JsonApiResponse } from "~/api/Client";
 import { useEffect, useState } from "react";
 
 export interface ApiClientHookResult<DataType> {

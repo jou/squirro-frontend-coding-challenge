@@ -1,5 +1,5 @@
-import "./App.css";
-import { useApiClient, useBookStores } from "./hooks/useApiClient";
+import "~/App.css";
+import { useApiClient, useBookStores } from "~/hooks/useApiClient";
 
 function App() {
     const apiClient = useApiClient();
