@@ -1,32 +1,15 @@
-import { useApiClient, useBookStores } from "~/hooks/useApiClient";
-import BookStoreList from "~/pages/BookStoreList";
-import styled from "styled-components";
+import styled, { StyleSheetManager } from "styled-components";
+import BookStores from "~/pages/BookStores";
 
-const AppWrapper = styled.div`
-    .book-store__list {
-        background-color: red;
-    }
-`;
+const AppWrapper = styled.div``;
 
 function App() {
-    const apiClient = useApiClient();
-    const { loading, error, data: bookStores } = useBookStores(apiClient);
-
-    if (loading) {
-        return <div>loading...</div>;
-    }
-
-    if (error) {
-        return <div>{error.message}</div>;
-    }
-
     return (
-        <AppWrapper className="book-store">
-            <BookStoreList
-                className="book-store__list"
-                bookStores={bookStores?.data ?? []}
-            />
-        </AppWrapper>
+        <StyleSheetManager disableVendorPrefixes>
+            <AppWrapper className="book-stores-app">
+                <BookStores />
+            </AppWrapper>
+        </StyleSheetManager>
     );
 }
 
