@@ -4,6 +4,8 @@ import { HTMLAttributes } from "react";
 import { Avatar } from "~/components/Avatar";
 import BestsellerTable from "~/components/BestsellerTable";
 import CountryFlag from "~/components/CountryFlag";
+import { parseISO } from "date-fns";
+import { DisplayDate } from "~/components/DisplayDate";
 
 const RATINGS = [1, 2, 3, 4, 5];
 
@@ -78,6 +80,9 @@ export default function BookStoreItem({
         return "☆";
     }).join("");
 
+    const establishmentDate = parseISO(bookStore.establishmentDate);
+    const websiteUrl = new URL(bookStore.website);
+
     return (
         <BookStoreItemWrapper
             {...wrapperProps}
@@ -111,7 +116,13 @@ export default function BookStoreItem({
                 </div>
             </div>
             <div className="book-store-item__meta">
-                <span>{bookStore.establishmentDate}</span>
+                <span>
+                    {/* Establishment date is supplied by the API as midnight UTC. Not adjusting
+                        for time zone when formatting will net wrong dates displayed when the
+                        client's UTC offset is negative. */}
+                    <DisplayDate date={establishmentDate} timeZone="UTC" />-{" "}
+                    <a href={bookStore.website}>{websiteUrl.host}</a>
+                </span>
                 <CountryFlag
                     className="book-store-item__flag"
                     countryCode={bookStore.countries.data.code}
