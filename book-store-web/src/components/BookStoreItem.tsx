@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { BookStoreAttributes } from "~/api/Client";
 import { HTMLAttributes } from "react";
 import { Avatar } from "~/components/Avatar";
+import BestsellerTable from "~/components/BestsellerTable";
 
 const RATINGS = [1, 2, 3, 4, 5];
 
@@ -9,7 +10,7 @@ const BookStoreItemWrapper = styled.div`
     display: flex;
     flex-direction: column;
 
-    border: 1px gray solid;
+    border: 1px solid var(--color-slate-500);
     border-radius: 0.5rem;
     padding: 1rem;
 
@@ -40,6 +41,10 @@ const BookStoreItemWrapper = styled.div`
 
     .book-store-item__rating {
         font-size: 1.5rem;
+    }
+
+    .book-store-item__bestseller {
+        margin-top: 1rem;
     }
 
     .book-store-item__meta {
@@ -82,6 +87,16 @@ export default function BookStoreItem({
                             {ratingStars}
                         </span>
                     </div>
+                    {bookStore.books ? (
+                        <BestsellerTable
+                            className="book-store-item__bestseller"
+                            books={bookStore.books.data}
+                        />
+                    ) : (
+                        <div className="book-store-item__bestseller">
+                            No data
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="book-store-item__meta">

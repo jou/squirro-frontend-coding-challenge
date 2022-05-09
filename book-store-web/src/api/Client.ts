@@ -21,7 +21,7 @@ export interface AuthorAttributes {
 
 export interface BookAttributes {
     id: string;
-    author: JsonApiRelation<AuthorAttributes>;
+    author?: JsonApiRelation<AuthorAttributes>;
     copiesSold: string;
     name: string;
 }
