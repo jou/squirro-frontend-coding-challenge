@@ -40,7 +40,7 @@ export interface BookStoreAttributes {
     establishmentDate: string;
 
     books: JsonApiRelation<BookAttributes[]>;
-    countries: JsonApiRelation<CountryAttributes[]>;
+    countries: JsonApiRelation<CountryAttributes>;
 }
 
 export default class ApiClient {

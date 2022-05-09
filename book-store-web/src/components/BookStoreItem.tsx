@@ -3,6 +3,7 @@ import { BookStoreAttributes } from "~/api/Client";
 import { HTMLAttributes } from "react";
 import { Avatar } from "~/components/Avatar";
 import BestsellerTable from "~/components/BestsellerTable";
+import CountryFlag from "~/components/CountryFlag";
 
 const RATINGS = [1, 2, 3, 4, 5];
 
@@ -48,6 +49,16 @@ const BookStoreItemWrapper = styled.div`
     }
 
     .book-store-item__meta {
+        margin-top: 0.5rem;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .book-store-item__flag {
+        font-size: 1.5rem;
     }
 `;
 
@@ -100,7 +111,11 @@ export default function BookStoreItem({
                 </div>
             </div>
             <div className="book-store-item__meta">
-                {bookStore.establishmentDate}
+                <span>{bookStore.establishmentDate}</span>
+                <CountryFlag
+                    className="book-store-item__flag"
+                    countryCode={bookStore.countries.data.code}
+                />
             </div>
         </BookStoreItemWrapper>
     );
