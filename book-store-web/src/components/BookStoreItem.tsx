@@ -6,6 +6,7 @@ import BestsellerTable from "~/components/BestsellerTable";
 import CountryFlag from "~/components/CountryFlag";
 import { parseISO } from "date-fns";
 import { DisplayDate } from "~/components/DisplayDate";
+import { screens } from "~/utils/Styling";
 
 const RATINGS = [1, 2, 3, 4, 5];
 
@@ -22,8 +23,13 @@ const BookStoreItemWrapper = styled.div`
     }
 
     .book-store-item__store-image {
-        flex: 0 0 8rem;
+        flex: 0 0 2rem;
         margin: 0 1rem 1rem 0;
+        align-self: flex-start;
+
+        @media ${screens.md} {
+            flex-basis: 8rem;
+        }
     }
 
     .book-store-item__info {
@@ -103,16 +109,10 @@ export default function BookStoreItem({
                             {ratingStars}
                         </span>
                     </div>
-                    {bookStore.books ? (
-                        <BestsellerTable
-                            className="book-store-item__bestseller"
-                            books={bookStore.books.data}
-                        />
-                    ) : (
-                        <div className="book-store-item__bestseller">
-                            No data
-                        </div>
-                    )}
+                    <BestsellerTable
+                        className="book-store-item__bestseller"
+                        books={bookStore.books?.data}
+                    />
                 </div>
             </div>
             <div className="book-store-item__meta">

@@ -21,44 +21,62 @@ const BestsellerTableWrapper = styled.table`
     th {
         padding: 0.25rem;
     }
+
+    .bestseller-table__author-col {
+        width: 33.33333%;
+    }
 `;
 
 export interface BestsellerTableProps {
-    books: BookAttributes[];
+    books?: BookAttributes[];
 }
 
 export default function BestsellerTable({
     books,
     ...tableProps
 }: BestsellerTableProps & TableHTMLAttributes<HTMLTableElement>): JSX.Element {
-    const topList = useMemo(
-        () =>
-            sortBy(books, (book) => book.copiesSold)
-                .reverse()
-                .slice(0, TOP_LIST_SIZE),
-        [books],
-    );
+    const topList = useMemo(() => {
+        if (!books) {
+            return [];
+        }
+
+        return sortBy(books, (book) => book.copiesSold)
+            .reverse()
+            .slice(0, TOP_LIST_SIZE);
+    }, [books]);
     return (
         <BestsellerTableWrapper
             {...tableProps}
             className={`bestseller-table ${tableProps.className}`}
         >
+            <colgroup>
+                <col className="bestseller-table__title-col" />
+                <col className="bestseller-table__author-col" />
+            </colgroup>
             <thead>
                 <tr>
                     <th colSpan={2}>Best-selling books</th>
                 </tr>
             </thead>
             <tbody>
-                {topList.map((book) => {
-                    return (
-                        <tr key={book.id}>
-                            <td>{book.name}</td>
-                            <td>
-                                {book.author?.data.fullName ?? "Unknown Author"}
-                            </td>
-                        </tr>
-                    );
-                })}
+                {topList.length > 0 ? (
+                    topList.map((book) => {
+                        return (
+                            <tr key={book.id}>
+                                <td>{book.name}</td>
+                                <td>
+                                    {book.author?.data.fullName ??
+                                        "Unknown Author"}
+                                </td>
+                            </tr>
+                        );
+                    })
+                ) : (
+                    <tr>
+                        <td>No data available</td>
+                        <td></td>
+                    </tr>
+                )}
             </tbody>
         </BestsellerTableWrapper>
     );
