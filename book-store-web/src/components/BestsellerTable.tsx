@@ -6,6 +6,8 @@ import { TableHTMLAttributes, useMemo } from "react";
 const TOP_LIST_SIZE = 2;
 
 const BestsellerTableWrapper = styled.table`
+    overflow-x: scroll;
+
     &,
     th,
     td {

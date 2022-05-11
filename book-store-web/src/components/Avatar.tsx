@@ -8,7 +8,7 @@ export interface AvatarProps {
 
 const AvatarWrapper = styled.div`
     display: inline-block;
-    min-width: 2rem;
+    min-width: 1rem;
     position: relative;
 
     // Make the container square with a vertical padding that is

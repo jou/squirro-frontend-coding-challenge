@@ -19,26 +19,31 @@ const BookStoreItemWrapper = styled.div`
     padding: 1rem;
 
     .book-store-item__main {
-        display: flex;
+        display: grid;
+        grid-template-columns: 2rem auto;
+        grid-gap: 0.5rem;
+        align-items: start;
+
+        @media ${screens.md} {
+            grid-template-columns: 3rem auto;
+            grid-gap: 0.75rem;
+        }
+
+        @media ${screens.lg} {
+            grid-template-columns: 8rem auto;
+            grid-gap: 1rem;
+        }
     }
 
     .book-store-item__store-image {
-        flex: 0 0 2rem;
-        margin: 0 1rem 1rem 0;
-        align-self: flex-start;
+        width: 100%;
 
-        @media ${screens.md} {
-            flex-basis: 8rem;
+        @media ${screens.lg} {
+            grid-row: 1 / span 2;
         }
     }
 
     .book-store-item__info {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .book-store-item__info-top {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -46,14 +51,33 @@ const BookStoreItemWrapper = styled.div`
 
     .book-store-item__title {
         margin: 0;
+        font-size: 1.25rem;
     }
 
     .book-store-item__rating {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
+    }
+
+    @media ${screens.md} {
+        .book-store-item__title,
+        .book-store-item__rating {
+            font-size: 1.75rem;
+        }
+    }
+
+    @media ${screens.lg} {
+        .book-store-item__title,
+        .book-store-item__rating {
+            font-size: 2rem;
+        }
     }
 
     .book-store-item__bestseller {
-        margin-top: 1rem;
+        grid-column: 1 / span 2;
+
+        @media ${screens.lg} {
+            grid-column: 2 / span 1;
+        }
     }
 
     .book-store-item__meta {
@@ -101,26 +125,22 @@ export default function BookStoreItem({
                     avatarUrl={bookStore.storeImage}
                 />
                 <div className="book-store-item__info">
-                    <div className="book-store-item__info-top">
-                        <h1 className="book-store-item__title">
-                            {bookStore.name}
-                        </h1>
-                        <span className="book-store-item__rating">
-                            {ratingStars}
-                        </span>
-                    </div>
-                    <BestsellerTable
-                        className="book-store-item__bestseller"
-                        books={bookStore.books?.data}
-                    />
+                    <h1 className="book-store-item__title">{bookStore.name}</h1>
+                    <span className="book-store-item__rating">
+                        {ratingStars}
+                    </span>
                 </div>
+                <BestsellerTable
+                    className="book-store-item__bestseller"
+                    books={bookStore.books?.data}
+                />
             </div>
             <div className="book-store-item__meta">
                 <span>
                     {/* Establishment date is supplied by the API as midnight UTC. Not adjusting
                         for time zone when formatting will net wrong dates displayed when the
                         client's UTC offset is negative. */}
-                    <DisplayDate date={establishmentDate} timeZone="UTC" />-{" "}
+                    <DisplayDate date={establishmentDate} timeZone="UTC" /> -{" "}
                     <a href={bookStore.website}>{websiteUrl.host}</a>
                 </span>
                 <CountryFlag
