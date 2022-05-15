@@ -3,7 +3,7 @@ const CODE_POINT_REGIONAL_INDICATOR_A: number = "🇦".codePointAt(0) ?? 0x1f1e6
 const CODE_POINT_REPLACEMENT_CHARACTER: number = "�".codePointAt(0) ?? 0xfffd;
 
 export function flagFromAlpha2Code(countryCode: string): string {
-    if (!countryCode.match(/[a-z]{2}/i)) {
+    if (!countryCode.match(/^[a-z]{2}$/i)) {
         throw new Error("Invalid country code");
     }
 
