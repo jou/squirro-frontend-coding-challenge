@@ -1,0 +1,101 @@
+// Vitest Snapshot v1
+
+exports[`<BookStoreItem> > should match snapshot 1`] = `
+<div>
+  <div
+    class="sc-dkzDqf bXQXKu book-store-item undefined"
+  >
+    <div
+      class="book-store-item__main"
+    >
+      <div
+        class="sc-bczRLJ gHExxr avatar book-store-item__store-image"
+      >
+        <img
+          alt="Picture of Awesome Book Store"
+          class="avatar__image"
+          src="http://example.com/bookstore/store.jpg"
+        />
+      </div>
+      <div
+        class="book-store-item__info"
+      >
+        <h1
+          class="book-store-item__title"
+        >
+          Awesome Book Store
+        </h1>
+        <span
+          class="book-store-item__rating"
+        >
+          ★★★☆☆
+        </span>
+      </div>
+      <table
+        class="sc-gsnTZi bodUZA bestseller-table book-store-item__bestseller"
+      >
+        <colgroup>
+          <col
+            class="bestseller-table__title-col"
+          />
+          <col
+            class="bestseller-table__author-col"
+          />
+        </colgroup>
+        <thead>
+          <tr>
+            <th
+              colspan="2"
+            >
+              Best-selling books
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            data-testid="bestseller-table__row"
+          >
+            <td>
+              Awesomest Book
+            </td>
+            <td>
+              Unknown Author
+            </td>
+          </tr>
+          <tr
+            data-testid="bestseller-table__row"
+          >
+            <td>
+              Awesomer Book
+            </td>
+            <td>
+              Johner Doe
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="book-store-item__meta"
+    >
+      <span>
+        <span>
+          01.01.2020
+        </span>
+         -
+         
+        <a
+          href="http://example.com/bookstore"
+        >
+          example.com
+        </a>
+      </span>
+      <span
+        class="book-store-item__flag"
+      >
+        🇨🇭
+      </span>
+    </div>
+  </div>
+</div>
+`;

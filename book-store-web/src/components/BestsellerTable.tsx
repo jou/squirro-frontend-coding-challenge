@@ -46,6 +46,7 @@ export default function BestsellerTable({
             .reverse()
             .slice(0, TOP_LIST_SIZE);
     }, [books]);
+
     return (
         <BestsellerTableWrapper
             {...tableProps}
@@ -64,7 +65,10 @@ export default function BestsellerTable({
                 {topList.length > 0 ? (
                     topList.map((book) => {
                         return (
-                            <tr key={book.id}>
+                            <tr
+                                key={book.id}
+                                data-testid="bestseller-table__row"
+                            >
                                 <td>{book.name}</td>
                                 <td>
                                     {book.author?.data.fullName ??

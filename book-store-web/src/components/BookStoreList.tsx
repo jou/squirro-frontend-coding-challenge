@@ -28,6 +28,7 @@ export default function BookStoreList({
             {bookStores.map((bookStore) => (
                 <BookStoreItem
                     className="book-store-list__item"
+                    data-testid="book-store-list__item"
                     key={bookStore.id}
                     bookStore={bookStore}
                 />

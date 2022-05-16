@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { useBookStores } from "~/hooks/useApiClient";
 import ApiClient, { BookStoreAttributes, JsonApiResponse } from "~/api/Client";
 import { renderHook } from "@testing-library/react";
@@ -10,10 +10,6 @@ describe("useBookStores()", () => {
 
     beforeEach(() => {
         apiClient = ApiClient.getDefault();
-    });
-
-    afterEach(() => {
-        vi.restoreAllMocks();
     });
 
     it("should be loading initially", async () => {

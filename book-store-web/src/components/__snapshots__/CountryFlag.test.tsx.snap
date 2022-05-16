@@ -1,0 +1,9 @@
+// Vitest Snapshot v1
+
+exports[`<CountryFlag> > should match snapshot 1`] = `
+<div>
+  <span>
+    🇨🇭
+  </span>
+</div>
+`;
