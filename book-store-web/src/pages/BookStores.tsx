@@ -6,7 +6,7 @@ export default function BookStores(): JSX.Element {
     const { loading, error, data: bookStores } = useBookStores(apiClient);
 
     if (loading) {
-        return <div>loading...</div>;
+        return <div>loading…</div>;
     }
     if (error) {
         return <div>{error.message}</div>;
