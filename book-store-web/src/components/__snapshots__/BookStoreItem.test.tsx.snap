@@ -3,7 +3,7 @@
 exports[`<BookStoreItem> > should match snapshot 1`] = `
 <div>
   <div
-    class="sc-dkzDqf bXQXKu book-store-item undefined"
+    class="sc-hKMtZM hVrONt book-store-item undefined"
   >
     <div
       class="book-store-item__main"
@@ -26,9 +26,43 @@ exports[`<BookStoreItem> > should match snapshot 1`] = `
           Awesome Book Store
         </h1>
         <span
-          class="book-store-item__rating"
+          class="sc-dkzDqf ljtOeY star-rating book-store-item__rating"
         >
-          ★★★☆☆
+          <span
+            class="star-rating__star"
+            data-testid="star-rating__star-1"
+            role="button"
+          >
+            ★
+          </span>
+          <span
+            class="star-rating__star"
+            data-testid="star-rating__star-2"
+            role="button"
+          >
+            ★
+          </span>
+          <span
+            class="star-rating__star"
+            data-testid="star-rating__star-3"
+            role="button"
+          >
+            ★
+          </span>
+          <span
+            class="star-rating__star"
+            data-testid="star-rating__star-4"
+            role="button"
+          >
+            ☆
+          </span>
+          <span
+            class="star-rating__star"
+            data-testid="star-rating__star-5"
+            role="button"
+          >
+            ☆
+          </span>
         </span>
       </div>
       <table

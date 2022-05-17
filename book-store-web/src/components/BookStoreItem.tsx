@@ -7,8 +7,7 @@ import CountryFlag from "~/components/CountryFlag";
 import { parseISO } from "date-fns";
 import { DisplayDate } from "~/components/DisplayDate";
 import { screens } from "~/utils/Styling";
-
-const RATINGS = [1, 2, 3, 4, 5];
+import StarRating from "~/components/StarRating";
 
 const BookStoreItemWrapper = styled.div`
     display: flex;
@@ -102,14 +101,6 @@ export default function BookStoreItem({
     bookStore,
     ...wrapperProps
 }: BookStoreItemProps & HTMLAttributes<HTMLDivElement>): JSX.Element {
-    const ratingStars: string = RATINGS.map((rating) => {
-        if (bookStore.rating >= rating) {
-            return "★";
-        }
-
-        return "☆";
-    }).join("");
-
     const establishmentDate = parseISO(bookStore.establishmentDate);
     const websiteUrl = new URL(bookStore.website);
 
@@ -126,9 +117,11 @@ export default function BookStoreItem({
                 />
                 <div className="book-store-item__info">
                     <h1 className="book-store-item__title">{bookStore.name}</h1>
-                    <span className="book-store-item__rating">
-                        {ratingStars}
-                    </span>
+                    <StarRating
+                        className="book-store-item__rating"
+                        rating={bookStore.rating}
+                        onRatingSelected={(i) => console.log(i)}
+                    />
                 </div>
                 <BestsellerTable
                     className="book-store-item__bestseller"
