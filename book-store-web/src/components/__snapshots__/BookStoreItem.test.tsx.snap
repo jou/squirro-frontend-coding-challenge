@@ -90,20 +90,10 @@ exports[`<BookStoreItem> > should match snapshot 1`] = `
             data-testid="bestseller-table__row"
           >
             <td>
-              Awesomest Book
+              Awesome Book
             </td>
             <td>
-              Unknown Author
-            </td>
-          </tr>
-          <tr
-            data-testid="bestseller-table__row"
-          >
-            <td>
-              Awesomer Book
-            </td>
-            <td>
-              Johner Doe
+              John Doe
             </td>
           </tr>
         </tbody>

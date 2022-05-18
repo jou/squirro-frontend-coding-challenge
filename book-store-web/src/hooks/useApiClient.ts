@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 
 export interface ApiClientHookResult<DataType> {
     loading: boolean;
-    error?: Error | null;
-    data?: JsonApiResponse<DataType> | null;
+    error?: Error;
+    data?: JsonApiResponse<DataType>;
+    reload(): Promise<void>;
 }
 
 export function useApiClient(): ApiClient {
@@ -15,31 +16,32 @@ export function useBookStores(
     apiClient: ApiClient,
 ): ApiClientHookResult<BookStoreAttributes[]> {
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<Error | null>(null);
-    const [data, setData] = useState<JsonApiResponse<
-        BookStoreAttributes[]
-    > | null>(null);
+    const [error, setError] = useState<Error>();
+    const [data, setData] = useState<JsonApiResponse<BookStoreAttributes[]>>();
 
-    useEffect(() => {
-        async function fetchBookStores() {
+    async function fetchBookStores(silent = false) {
+        if (!silent) {
             setLoading(true);
-            try {
-                const response = await apiClient.fetchBookStores();
-                setData(response);
-            } catch (e) {
-                if (e instanceof Error) {
-                    setError(e);
-                } else {
-                    // TODO: Maybe better handling of that
-                    setError(new Error("Unknown error occured"));
-                }
-            } finally {
+        }
+        try {
+            const response = await apiClient.fetchBookStores();
+            setData(response);
+        } catch (e) {
+            if (e instanceof Error) {
+                setError(e);
+            } else {
+                // TODO: Maybe better handling of that
+                setError(new Error("Unknown error occured"));
+            }
+        } finally {
+            if (!silent) {
                 setLoading(false);
             }
         }
-
-        void fetchBookStores();
+    }
+    useEffect(() => {
+        void fetchBookStores(false);
     }, []);
 
-    return { loading, error, data };
+    return { loading, error, data, reload: () => fetchBookStores(true) };
 }

@@ -95,10 +95,12 @@ const BookStoreItemWrapper = styled.div`
 
 export interface BookStoreItemProps {
     bookStore: BookStoreAttributes;
+    onRatingSelected(bookStore: BookStoreAttributes, newRating: number): void;
 }
 
 export default function BookStoreItem({
     bookStore,
+    onRatingSelected,
     ...wrapperProps
 }: BookStoreItemProps & HTMLAttributes<HTMLDivElement>): JSX.Element {
     const establishmentDate = parseISO(bookStore.establishmentDate);
@@ -120,7 +122,9 @@ export default function BookStoreItem({
                     <StarRating
                         className="book-store-item__rating"
                         rating={bookStore.rating}
-                        onRatingSelected={(i) => console.log(i)}
+                        onRatingSelected={(newRating) =>
+                            onRatingSelected(bookStore, newRating)
+                        }
                     />
                 </div>
                 <BestsellerTable

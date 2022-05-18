@@ -53,6 +53,17 @@ export default class ApiClient {
     fetchBookStores(): Promise<JsonApiResponse<BookStoreAttributes[]>> {
         return this.jsonApiClient.fetch("stores");
     }
+
+    updateBookStoreRating(
+        bookStoreId: string,
+        newRating: number,
+    ): Promise<JsonApiResponse<BookStoreAttributes>> {
+        const update: Partial<BookStoreAttributes> = {
+            id: bookStoreId,
+            rating: newRating,
+        };
+        return this.jsonApiClient.patch("stores", update);
+    }
 }
 
 defaultApiClient = new ApiClient(

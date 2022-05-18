@@ -1,5 +1,5 @@
 import { BookStoreAttributes } from "~/api/Client";
-import { AllBooks } from "~/tests/fixtures/Books";
+import { AllBooks, SampleBook } from "~/tests/fixtures/Books";
 
 export const BookStores: BookStoreAttributes[] = [
     {
@@ -11,7 +11,7 @@ export const BookStores: BookStoreAttributes[] = [
         rating: 3,
 
         books: {
-            data: AllBooks,
+            data: [SampleBook],
         },
         countries: {
             data: {

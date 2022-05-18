@@ -5,6 +5,7 @@ import BookStoreItem from "~/components/BookStoreItem";
 
 export interface BookStoreListProps {
     bookStores: BookStoreAttributes[];
+    onRatingSelected(bookStore: BookStoreAttributes, newRating: number): void;
 }
 
 const BookStoreListWrapper = styled.div`
@@ -18,6 +19,7 @@ const BookStoreListWrapper = styled.div`
 
 export default function BookStoreList({
     bookStores,
+    onRatingSelected,
     ...containerProps
 }: BookStoreListProps & HTMLAttributes<HTMLDivElement>): JSX.Element {
     return (
@@ -27,10 +29,11 @@ export default function BookStoreList({
         >
             {bookStores.map((bookStore) => (
                 <BookStoreItem
+                    key={bookStore.id}
                     className="book-store-list__item"
                     data-testid="book-store-list__item"
-                    key={bookStore.id}
                     bookStore={bookStore}
+                    onRatingSelected={onRatingSelected}
                 />
             ))}
         </BookStoreListWrapper>
