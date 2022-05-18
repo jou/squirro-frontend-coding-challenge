@@ -11,6 +11,9 @@ export default defineConfig({
             "~": "/src",
         },
     },
+    server: {
+        port: 3300,
+    },
     test: {
         // We enable globals without telling TypeScript about it. That way,
         // `@testing-library/react` can automatically register cleanup while
